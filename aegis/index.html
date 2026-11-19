@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AEGIS Web｜地震・津波・天気</title>
+<meta name="description" content="地震・津波・緊急地震速報と天気をひと目で確認できる防災ダッシュボード">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <div class="title-block">
+      <h1>🛡 AEGIS Web</h1>
+      <p class="subtitle">地震・津波・天気ダッシュボード</p>
+    </div>
+    <div class="header-actions">
+      <div class="update-info">
+        <span id="last-updated">未取得</span>
+        <span id="next-update" class="muted"></span>
+      </div>
+      <button id="reload-btn" type="button">↻ 再読み込み</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ステータスバナー（津波・EEW・エラー） -->
+  <div id="banners" aria-live="polite"></div>
+
+  <!-- 最新地震 -->
+  <section class="card">
+    <div class="section-head">
+      <h2>最新の地震情報</h2>
+      <span class="muted small">出典: P2P地震情報（気象庁）／30秒ごとに自動更新</span>
+    </div>
+    <div id="map" role="img" aria-label="震央地図"></div>
+    <p class="attribution">地図: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">地理院タイル</a>（国土地理院）</p>
+    <div id="quake-error" class="inline-error" hidden>
+      地震情報を取得できませんでした。<button type="button" class="mini-btn" data-reload>再試行</button>
+    </div>
+    <ul id="quake-list" class="quake-list">
+      <li class="loading">読み込み中…</li>
+    </ul>
+  </section>
+
+  <!-- 天気 -->
+  <section class="card">
+    <div class="section-head">
+      <h2>天気</h2>
+      <span class="muted small">出典: Open-Meteo</span>
+    </div>
+    <form id="place-search" class="search-form">
+      <input id="place-input" type="search" placeholder="地名を検索（例: 前橋、札幌）" autocomplete="off">
+      <button type="submit">検索</button>
+    </form>
+    <ul id="place-results" class="place-results"></ul>
+    <div id="weather-error" class="inline-error" hidden>
+      天気を取得できませんでした。<button type="button" class="mini-btn" data-reload>再試行</button>
+    </div>
+    <div id="weather-cards" class="weather-cards">
+      <p class="loading">読み込み中…</p>
+    </div>
+  </section>
+
+  <footer class="site-footer muted small">
+    <p>本ページは防災情報の確認補助です。避難等の判断は気象庁・自治体の公式情報を優先してください。</p>
+    <p>地震・津波・EEW: P2P地震情報 API ／ 天気: Open-Meteo API ／ 地図: 国土地理院</p>
+  </footer>
+</main>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

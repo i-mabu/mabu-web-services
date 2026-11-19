@@ -1,0 +1,295 @@
+/* AEGIS Web — ダークテーマ（AEGIS Android版の配色に準拠） */
+:root {
+  --bg: #0b1220;
+  --card: #1b2436;
+  --card-alt: #232f4b;
+  --header: #2a3852;
+  --text: #d8dee9;
+  --secondary: #9aa7bd;
+  --muted: #8a94a6;
+  --accent: #7fa8e0;
+  --danger: #ff6b6b;
+  --ok: #58c184;
+  --amber: #ffb454;
+  --radius: 12px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP",
+    "Yu Gothic UI", sans-serif;
+  line-height: 1.5;
+}
+
+a { color: var(--accent); }
+
+.muted { color: var(--muted); }
+.small { font-size: 0.8rem; }
+
+/* ===== ヘッダー ===== */
+.site-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--header);
+  position: sticky;
+  top: 0;
+  z-index: 500;
+}
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.title-block h1 {
+  margin: 0;
+  font-size: 1.3rem;
+  letter-spacing: 0.02em;
+}
+.subtitle {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--secondary);
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.update-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.78rem;
+  text-align: right;
+}
+button {
+  background: var(--card-alt);
+  color: var(--text);
+  border: 1px solid var(--header);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+button:hover { border-color: var(--accent); }
+button:active { transform: translateY(1px); }
+.mini-btn { padding: 2px 10px; font-size: 0.8rem; margin-left: 8px; }
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 12px 12px 32px;
+}
+
+/* ===== バナー ===== */
+#banners { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
+#banners:empty { margin-bottom: 0; }
+.banner {
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.banner .banner-sub { font-weight: 400; font-size: 0.85rem; margin-top: 4px; }
+.banner-tsunami-major { background: #5b1a6e; border-color: #b45fd6; color: #f5e6ff; }
+.banner-tsunami-warning { background: #7a1622; border-color: var(--danger); color: #ffe9e9; }
+.banner-tsunami-watch { background: #6e5410; border-color: var(--amber); color: #fff3d6; }
+.banner-tsunami-info { background: var(--card-alt); border-color: var(--header); color: var(--secondary); }
+.banner-eew {
+  background: #7a1622;
+  border-color: var(--danger);
+  color: #ffe9e9;
+  animation: eew-pulse 1s ease-in-out infinite;
+}
+.banner-eew-cancel { background: var(--card-alt); border-color: var(--header); color: var(--secondary); animation: none; }
+@keyframes eew-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.0); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 107, 107, 0.25); }
+}
+
+/* ===== カード・セクション ===== */
+.card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-top: 12px;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+.section-head h2 { margin: 0; font-size: 1.1rem; }
+
+#map {
+  height: 320px;
+  border-radius: 8px;
+  background: var(--card-alt);
+  z-index: 0;
+}
+.attribution { font-size: 0.72rem; color: var(--muted); margin: 6px 0 0; }
+
+.inline-error {
+  background: #4a1f24;
+  border: 1px solid var(--danger);
+  color: #ffd7d7;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+.loading { color: var(--muted); list-style: none; }
+
+/* ===== 地震リスト ===== */
+.quake-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.quake-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--card-alt);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+.quake-item:hover, .quake-item:focus-visible { border-color: var(--accent); outline: none; }
+.quake-main { flex: 1; min-width: 0; }
+.quake-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.quake-place { font-weight: 700; }
+.quake-time { color: var(--secondary); font-size: 0.85rem; white-space: nowrap; }
+.quake-detail { color: var(--secondary); font-size: 0.85rem; margin-top: 2px; }
+
+/* 震度バッジ（色は AEGIS の scaleColor に準拠） */
+.scale-badge {
+  flex: none;
+  min-width: 52px;
+  text-align: center;
+  border-radius: 8px;
+  padding: 6px 4px;
+  color: #fff;
+  line-height: 1.15;
+}
+.scale-badge .scale-num { display: block; font-size: 1.15rem; font-weight: 800; }
+.scale-badge .scale-cap { display: block; font-size: 0.62rem; opacity: 0.85; }
+.scale-1 { background: #54687f; }
+.scale-2 { background: #3e6b9e; }
+.scale-3 { background: #a8871d; }
+.scale-4 { background: #d97a2b; }
+.scale-5 { background: #c93a3a; }
+.scale-unknown { background: #3a465c; }
+
+/* Leaflet ポップアップをダークに寄せる */
+.leaflet-popup-content-wrapper {
+  background: var(--card);
+  color: var(--text);
+  border-radius: 8px;
+}
+.leaflet-popup-tip { background: var(--card); }
+.leaflet-popup-content { font-size: 0.85rem; line-height: 1.5; }
+.popup-title { font-weight: 700; margin-bottom: 2px; }
+
+/* ===== 天気 ===== */
+.search-form { display: flex; gap: 8px; }
+.search-form input {
+  flex: 1;
+  min-width: 0;
+  background: var(--bg);
+  border: 1px solid var(--header);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 9px 12px;
+  font-size: 0.95rem;
+}
+.search-form input:focus { border-color: var(--accent); outline: none; }
+.place-results {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.place-results:empty { margin: 0; }
+.place-results li button {
+  width: 100%;
+  text-align: left;
+  background: var(--bg);
+  font-size: 0.9rem;
+}
+.weather-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 12px;
+}
+@media (min-width: 720px) {
+  .weather-cards { grid-template-columns: 1fr 1fr; }
+  #map { height: 380px; }
+}
+.weather-card {
+  background: var(--card-alt);
+  border-radius: 8px;
+  padding: 12px;
+}
+.weather-card-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+.weather-card h3 { margin: 0; font-size: 1rem; }
+.remove-place {
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  color: var(--secondary);
+}
+.weather-now {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+}
+.weather-now .emoji { font-size: 1.8rem; }
+.weather-now .temp { font-size: 1.5rem; font-weight: 700; }
+.weather-now .cond { color: var(--secondary); font-size: 0.85rem; }
+table.week {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+table.week th, table.week td {
+  padding: 5px 4px;
+  text-align: center;
+  border-bottom: 1px solid var(--header);
+  white-space: nowrap;
+}
+table.week th { background: var(--header); color: var(--secondary); font-weight: 600; }
+table.week td:first-child, table.week th:first-child { text-align: left; }
+.tmax { color: var(--danger); font-weight: 700; }
+.tmin { color: var(--accent); font-weight: 700; }
+.pop { color: var(--secondary); }
+
+.site-footer { margin-top: 16px; padding: 0 4px; }
+.site-footer p { margin: 4px 0; }
