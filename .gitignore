@@ -1,0 +1,11 @@
+# OS / エディタ
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Vercel
+.vercel
+
+# ローカル作業ファイル
+*.local.*
